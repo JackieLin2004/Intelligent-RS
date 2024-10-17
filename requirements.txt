@@ -1,2 +1,4 @@
 opencv-python~=4.10.0.84
 numpy~=1.26.4
+tqdm~=4.66.5
+pillow~=9.4.0
