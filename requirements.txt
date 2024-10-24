@@ -2,3 +2,7 @@ opencv-python~=4.10.0.84
 numpy~=1.26.4
 tqdm~=4.66.5
 pillow~=9.4.0
+torch~=1.12.0
+torchvision~=0.13.0
+matplotlib~=3.5.1
+scikit-learn~=1.2.1

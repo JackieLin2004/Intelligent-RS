@@ -2,3 +2,5 @@
 /dataset/classification
 /dataset/super-resolution
 /dataset/colorization
+
+/AlexNet/class_indices.json
