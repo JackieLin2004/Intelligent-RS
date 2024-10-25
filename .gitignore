@@ -4,3 +4,6 @@
 /dataset/colorization
 
 /AlexNet/class_indices.json
+/AlexNet/.ipynb_checkpoints
+/AlexNet/AlexNet.log
+/AlexNet/best_model.pth
