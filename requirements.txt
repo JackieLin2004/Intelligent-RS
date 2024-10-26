@@ -6,3 +6,4 @@ torch~=1.12.0
 torchvision~=0.13.0
 matplotlib~=3.5.1
 scikit-learn~=1.2.1
+seaborn~=0.13.2
