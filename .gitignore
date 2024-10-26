@@ -7,3 +7,6 @@
 /AlexNet/.ipynb_checkpoints
 /AlexNet/AlexNet.log
 /AlexNet/best_model.pth
+/AlexNet/best_model_labels_preds.txt
+
+/backup

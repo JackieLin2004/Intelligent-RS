@@ -17,14 +17,22 @@ def run(args):
 
     img_size = 256
     data_transform = {
-        "train": transforms.Compose([transforms.RandomResizedCrop(img_size), # 随机裁剪一个区域并扩大到256
-                                     transforms.RandomHorizontalFlip(), # 50%的概率随机水平翻转图片
-                                     transforms.ToTensor(),
-                                     transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])]),
-        "val": transforms.Compose([transforms.Resize(int(img_size * 1.143)), # 先将图片放大1.143倍得到292
-                                   transforms.CenterCrop(img_size), # 再裁剪到256
-                                   transforms.ToTensor(),
-                                   transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])])
+        "train": transforms.Compose([
+            transforms.Resize(int(img_size * 1.143)),
+            transforms.CenterCrop(img_size),
+            transforms.RandomHorizontalFlip(),  # 随机水平翻转
+            transforms.RandomRotation(90),  # 90度倍数随机旋转
+            transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1),  # 颜色抖动
+            transforms.RandomAffine(degrees=0, scale=(0.9, 1.1)),  # 仿射变换
+            transforms.ToTensor(),
+            transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])  # 标准化
+        ]),
+        "val": transforms.Compose([
+            transforms.Resize(int(img_size * 1.143)),
+            transforms.CenterCrop(img_size),
+            transforms.ToTensor(),
+            transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+        ])
     }
 
     # 实例化训练数据集
@@ -81,7 +89,7 @@ def run(args):
     logger = get_logger()
     logger.info("Start training and validating...")
     for epoch in range(args.epochs):
-        val_acc = train_loop(
+        val_acc, all_labels, all_preds = train_loop(
             model=model,
             optimizer=optimizer,
             train_loader=train_loader,
@@ -95,6 +103,11 @@ def run(args):
             best_acc = val_acc
             torch.save(model.state_dict(), "best_model.pth")
             logger.info("Best model saved!")
+
+            # 保存 all_labels 和 all_preds 到 txt 文件
+            with open("best_model_labels_preds.txt", "w") as f:
+                for label, pred in zip(all_labels, all_preds):
+                    f.write(f"{label} {pred}\n")
 
 
 if __name__ == '__main__':

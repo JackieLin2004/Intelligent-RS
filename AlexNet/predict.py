@@ -1,7 +1,6 @@
 import os
 import json
 
-os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 import torch
 from PIL import Image
 from torchvision import transforms
@@ -19,7 +18,7 @@ def main():
          transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
     # load image
-    img_path = "../dataset/classification/desert/desert_029.jpg"
+    img_path = "../dataset/predict_images/1.jpg"
     assert os.path.exists(img_path), "file: '{}' dose not exist.".format(img_path)
     img = Image.open(img_path)
 

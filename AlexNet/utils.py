@@ -61,12 +61,13 @@ def read_split_data(root: str, val_rate: float = 0.2):
 
     return train_images_path, train_images_label, val_images_path, val_images_label
 
+
 # 一次训练函数
 def train(model, optimizer, data_loader, device, epoch):
-    model.train()   # 模型设定为训练模式
+    model.train()  # 模型设定为训练模式
     loss_function = torch.nn.CrossEntropyLoss(label_smoothing=0.1)  # 对标签进行平滑处理
     accu_loss = torch.zeros(1).to(device)  # 累计损失
-    accu_num = torch.zeros(1).to(device)   # 累计预测正确的样本数
+    accu_num = torch.zeros(1).to(device)  # 累计预测正确的样本数
     optimizer.zero_grad()
 
     sample_num = 0  # 样本计数器
@@ -77,7 +78,7 @@ def train(model, optimizer, data_loader, device, epoch):
 
         pred = model(images.to(device))
         pred_classes = torch.max(pred, dim=1)[1]
-        accu_num += torch.eq(pred_classes, labels.to(device)).sum() # 计算正确预测的样本数
+        accu_num += torch.eq(pred_classes, labels.to(device)).sum()  # 计算正确预测的样本数
 
         loss = loss_function(pred, labels.to(device))
         loss.backward()
@@ -86,9 +87,9 @@ def train(model, optimizer, data_loader, device, epoch):
         train_loss = accu_loss.item() / (step + 1)
         train_acc = accu_num.item() / sample_num
 
-        data_loader.desc = "[train epoch {}] loss: {:.3f}, acc: {:.3f}".format(epoch+1, train_loss, train_acc)
+        data_loader.desc = "[train epoch {}] loss: {:.3f}, acc: {:.3f}".format(epoch + 1, train_loss, train_acc)
 
-        if not torch.isfinite(loss):    # 检查损失值是否有限，如果是无穷大或者NAN则终止
+        if not torch.isfinite(loss):  # 检查损失值是否有限，如果是无穷大或者NAN则终止
             print('WARNING: non-finite loss, ending training ', loss)
             sys.exit(1)
 
@@ -97,14 +98,15 @@ def train(model, optimizer, data_loader, device, epoch):
 
     return train_loss, train_acc
 
+
 # 评估函数，评估验证集
 @torch.no_grad()
 def evaluate(model, data_loader, device, epoch):
     loss_function = torch.nn.CrossEntropyLoss()
 
-    model.eval()    # 模型设定为评估模式
+    model.eval()  # 模型设定为评估模式
 
-    accu_num = torch.zeros(1).to(device)   # 累计预测正确的样本数
+    accu_num = torch.zeros(1).to(device)  # 累计预测正确的样本数
     accu_loss = torch.zeros(1).to(device)  # 累计损失
 
     sample_num = 0
@@ -133,7 +135,7 @@ def evaluate(model, data_loader, device, epoch):
         all_preds.extend(pred_classes.cpu().numpy())
         all_preds_proba.extend(torch.softmax(pred, dim=1).cpu().numpy())  # softmax得到类别概率
 
-        data_loader.desc = "[valid epoch {}] loss: {:.3f}, acc: {:.3f}".format(epoch+1,
+        data_loader.desc = "[valid epoch {}] loss: {:.3f}, acc: {:.3f}".format(epoch + 1,
                                                                                accu_loss.item() / (step + 1),
                                                                                accu_num.item() / sample_num)
 
@@ -144,7 +146,10 @@ def evaluate(model, data_loader, device, epoch):
     # 多分类问题需要加上multi_class='ovo'
     auc = roc_auc_score(all_labels, all_preds_proba, multi_class='ovo')
 
-    return accu_loss.item() / (step + 1), accu_num.item() / sample_num, precision, recall, f1, auc
+    return (accu_loss.item() / (step + 1),
+            accu_num.item() / sample_num,
+            precision, recall, f1, auc, all_labels, all_preds)
+
 
 # 日志函数
 def get_logger():
@@ -164,6 +169,7 @@ def get_logger():
 
     return logger
 
+
 # 一整次epoch的循环
 def train_loop(model, optimizer, train_loader, val_loader, device, epoch, logger):
     # train
@@ -173,13 +179,13 @@ def train_loop(model, optimizer, train_loader, val_loader, device, epoch, logger
                                   device=device,
                                   epoch=epoch)
     # validate
-    val_loss, val_acc, precision, recall, f1, auc = evaluate(model=model,
-                                                             data_loader=val_loader,
-                                                             device=device,
-                                                             epoch=epoch)
+    val_loss, val_acc, precision, recall, f1, auc, all_labels, all_preds = evaluate(model=model,
+                                                                                    data_loader=val_loader,
+                                                                                    device=device,
+                                                                                    epoch=epoch)
 
     if logger is not None:
-        logger.info(f'Epoch: {epoch+1}, '
+        logger.info(f'Epoch: {epoch + 1}, '
                     f'Training loss: {train_loss}, '
                     f'Training accuracy: {train_acc}, '
                     f'Validating loss: {val_loss}, '
@@ -189,4 +195,4 @@ def train_loop(model, optimizer, train_loader, val_loader, device, epoch, logger
                     f'f1 score: {f1}, '
                     f'auc: {auc}')
 
-    return val_acc
+    return val_acc, all_labels, all_preds
