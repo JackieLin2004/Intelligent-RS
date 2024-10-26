@@ -3,12 +3,22 @@
 /dataset/super-resolution
 /dataset/colorization
 
+/backup
+
 /AlexNet/class_indices.json
 /AlexNet/.ipynb_checkpoints
 /AlexNet/AlexNet.log
 /AlexNet/best_model.pth
 /AlexNet/best_model_labels_preds.txt
 
-/backup
-
 /VGGNet/class_indices.json
+/VGGNet/.ipynb_checkpoints
+/VGGNet/VGGNet.log
+/VGGNet/best_model.pth
+/VGGNet/best_model_labels_preds.txt
+
+/GoogLeNet/class_indices.json
+/GoogLeNet/.ipynb_checkpoints
+/GoogLeNet/GoogLeNet.log
+/GoogLeNet/best_model.pth
+/GoogLeNet/best_model_labels_preds.txt
