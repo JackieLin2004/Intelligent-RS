@@ -10,3 +10,5 @@
 /AlexNet/best_model_labels_preds.txt
 
 /backup
+
+/VGGNet/class_indices.json
