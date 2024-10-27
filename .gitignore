@@ -22,3 +22,9 @@
 /GoogLeNet/GoogLeNet.log
 /GoogLeNet/best_model.pth
 /GoogLeNet/best_model_labels_preds.txt
+
+/ResNeXt/class_indices.json
+/ResNeXt/.ipynb_checkpoints
+/ResNeXt/ResNeXt.log
+/ResNeXt/best_model.pth
+/ResNeXt/best_model_labels_preds.txt
