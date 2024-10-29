@@ -40,3 +40,6 @@
 /SwinTransformer/SwinTransformer.log
 /SwinTransformer/best_model.pth
 /SwinTransformer/best_model_labels_preds.txt
+
+/SRResNet/data/train_images.json
+/SRResNet/data/test_images.json
