@@ -97,7 +97,7 @@ class PatchMerging(nn.Module):
 
 
 class MLP(nn.Module):
-    def __init__(self, in_features, hidden_features=None, out_features=None, act_layer=nn.GELU, drop=0.):
+    def __init__(self, in_features, hidden_features=None, out_features=None, act_layer=nn.GELU, drop=0.3):
         super().__init__()
         out_features = out_features or in_features
         hidden_features = hidden_features or in_features
@@ -118,7 +118,7 @@ class MLP(nn.Module):
 
 
 class WindowAttention(nn.Module):
-    def __init__(self, dim, window_size, num_heads, qkv_bias=True, attn_drop=0., proj_drop=0.):
+    def __init__(self, dim, window_size, num_heads, qkv_bias=True, attn_drop=0.3, proj_drop=0.3):
 
         super().__init__()
         self.dim = dim
@@ -347,7 +347,7 @@ class SwinTransformer(nn.Module):
     def __init__(self, patch_size=4, in_chans=3, num_classes=1000,
                  embed_dim=96, depths=(2, 2, 6, 2), num_heads=(3, 6, 12, 24),
                  window_size=7, mlp_ratio=4., qkv_bias=True,
-                 drop_rate=0., attn_drop_rate=0., drop_path_rate=0.1,
+                 drop_rate=0.3, attn_drop_rate=0.3, drop_path_rate=0.1,
                  norm_layer=nn.LayerNorm, patch_norm=True,
                  use_checkpoint=False, **kwargs):
         super().__init__()

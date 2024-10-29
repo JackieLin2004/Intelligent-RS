@@ -6,7 +6,7 @@ import torch.optim as optim
 from torchvision import transforms
 
 from my_dataset import MyDataSet
-from swintransformer_model import swin_large
+from swintransformer_model import swin_base
 from utils import read_split_data, train_loop, get_logger
 
 
@@ -62,7 +62,7 @@ def run(args):
                                              num_workers=num_workers,
                                              collate_fn=val_dataset.collate_fn)
 
-    model = swin_large(num_classes=args.num_classes).to(device)
+    model = swin_base(num_classes=args.num_classes).to(device)
 
     if args.weights != "":
         assert os.path.exists(args.weights), "weights file: '{}' not exist.".format(args.weights)

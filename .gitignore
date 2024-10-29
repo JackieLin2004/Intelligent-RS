@@ -34,3 +34,9 @@
 /DenseNet/DenseNet.log
 /DenseNet/best_model.pth
 /DenseNet/best_model_labels_preds.txt
+
+/SwinTransformer/class_indices.json
+/SwinTransformer/.ipynb_checkpoints
+/SwinTransformer/SwinTransformer.log
+/SwinTransformer/best_model.pth
+/SwinTransformer/best_model_labels_preds.txt
