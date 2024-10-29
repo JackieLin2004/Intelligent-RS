@@ -28,3 +28,9 @@
 /ResNeXt/ResNeXt.log
 /ResNeXt/best_model.pth
 /ResNeXt/best_model_labels_preds.txt
+
+/DenseNet/class_indices.json
+/DenseNet/.ipynb_checkpoints
+/DenseNet/DenseNet.log
+/DenseNet/best_model.pth
+/DenseNet/best_model_labels_preds.txt

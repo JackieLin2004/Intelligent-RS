@@ -157,7 +157,7 @@ def get_logger():
     logger.setLevel(logging.INFO)
     formatter = logging.Formatter('%(asctime)s - %(message)s')
 
-    file_handler = logging.FileHandler('./ResNeXt.log')
+    file_handler = logging.FileHandler('./DenseNet.log')
     file_handler.setLevel(logging.INFO)
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
