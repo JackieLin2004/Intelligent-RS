@@ -6,6 +6,7 @@ class ConvolutionalBlock(nn.Module):
     """
     卷积模块,由卷积层, BN归一化层, 激活层构成.
     """
+
     def __init__(self, in_channels, out_channels, kernel_size, stride=1, batch_norm=False, activation=None):
         """
         :参数 in_channels: 输入通道数
@@ -60,6 +61,7 @@ class SubPixelConvolutionalBlock(nn.Module):
     """
     子像素卷积模块, 包含卷积, 像素清洗和激活层.
     """
+
     def __init__(self, kernel_size=3, n_channels=64, scaling_factor=2):
         """
         :参数 kernel_size: 卷积核大小
@@ -94,6 +96,7 @@ class ResidualBlock(nn.Module):
     """
     残差模块, 包含两个卷积模块和一个跳连.
     """
+
     def __init__(self, kernel_size=3, n_channels=64):
         """
         :参数 kernel_size: 核大小
@@ -127,6 +130,7 @@ class SRResNet(nn.Module):
     """
     SRResNet模型
     """
+
     def __init__(self, large_kernel_size=9, small_kernel_size=3, n_channels=64, n_blocks=16, scaling_factor=4):
         """
         :参数 large_kernel_size: 第一层卷积和最后一层卷积核大小
