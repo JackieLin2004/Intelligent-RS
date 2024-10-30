@@ -2,7 +2,6 @@ import sys
 
 import torch.backends.cudnn as cudnn
 from torch import nn
-from torch.utils.tensorboard import SummaryWriter
 from srresnet_model import SRResNet
 from my_dataset import SRDataset
 from utils import *

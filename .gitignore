@@ -45,4 +45,9 @@
 /SRResNet/data/train_images.json
 /SRResNet/data/test_images.json
 /SRResNet/results/checkpoint_srresnet.pth
+/SRResNet/results/checkpoint_srresnet_16.pth
+/SRResNet/results/checkpoint_srresnet_32.pth
 /SRResNet/SRResNet.log
+
+/SRGAN/data/train_images.json
+/SRGAN/data/test_images.json
