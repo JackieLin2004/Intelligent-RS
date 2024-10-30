@@ -49,5 +49,8 @@
 /SRResNet/results/checkpoint_srresnet_32.pth
 /SRResNet/SRResNet.log
 
+/SRGAN/.ipynb_checkpoints
 /SRGAN/data/train_images.json
 /SRGAN/data/test_images.json
+/SRGAN/results/checkpoint_srgan.pth
+/SRGAN/SRGAN.log
