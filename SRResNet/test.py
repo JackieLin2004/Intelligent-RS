@@ -11,7 +11,7 @@ large_kernel_size = 9  # 第一层卷积和最后一层卷积的核大小
 small_kernel_size = 3  # 中间层卷积的核大小
 n_channels = 64  # 中间层通道数
 n_blocks = 16  # 残差模块数量
-scaling_factor = 4  # 放大比例
+scaling_factor = 2  # 放大比例
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 if __name__ == '__main__':

@@ -1,3 +1,5 @@
+import sys
+
 import torch.backends.cudnn as cudnn
 from torch import nn
 from torch.utils.tensorboard import SummaryWriter
@@ -8,7 +10,7 @@ from utils import *
 # 数据集参数
 data_folder = './data/'  # 数据存放路径
 crop_size = 96  # 高分辨率图像裁剪尺寸
-scaling_factor = 4  # 放大比例
+scaling_factor = 2  # 放大比例
 
 # 模型参数
 large_kernel_size = 9  # 第一层卷积和最后一层卷积的核大小
@@ -20,7 +22,7 @@ n_blocks = 16  # 残差模块数量
 checkpoint = None  # 预训练模型路径，如果不存在则为None
 batch_size = 128  # 批大小
 start_epoch = 1  # 轮数起始位置
-epochs = 130  # 迭代轮数
+epochs = 150  # 迭代轮数
 workers = 4  # 工作线程数
 lr = 1e-4  # 学习率
 
@@ -72,8 +74,11 @@ def main():
                                                num_workers=workers,
                                                pin_memory=True)
 
+    train_loader = tqdm(train_loader, file=sys.stdout)
+    logger = get_logger()
+    logger.info("Start training...")
     # 开始逐轮训练
-    for epoch in tqdm(range(start_epoch, epochs + 1), desc='Training...'):
+    for epoch in range(start_epoch, epochs + 1):
         model.train()  # 训练模式：允许使用批样本归一化
         loss_epoch = AverageMeter()  # 统计损失函数
 
@@ -94,8 +99,13 @@ def main():
             # 记录损失值
             loss_epoch.update(loss.item(), lr_imgs.size(0))
 
+            train_loader.desc = "[Epoch {}] loss: {:.6f}".format(epoch, loss_epoch.avg)
+
         # 手动释放内存
         del lr_imgs, hr_imgs, sr_imgs
+
+        # 记录每个epoch的平均损失
+        logger.info(f'Epoch [{epoch}/{epochs}] - Average Loss: {loss_epoch.avg:.6f}')
 
         # 保存预训练模型
         torch.save({

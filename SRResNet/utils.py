@@ -5,6 +5,7 @@ from tqdm import tqdm
 import random
 import torchvision.transforms.functional as FT
 import torch
+import logging
 
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -192,3 +193,22 @@ class AverageMeter(object):
         self.sum += val * n
         self.count += n
         self.avg = self.sum / self.count
+
+
+# 日志函数
+def get_logger():
+    logger = logging.getLogger(__name__)
+    logger.setLevel(logging.INFO)
+    formatter = logging.Formatter('%(asctime)s - %(message)s')
+
+    file_handler = logging.FileHandler('./SRResNet.log')
+    file_handler.setLevel(logging.INFO)
+    file_handler.setFormatter(formatter)
+    logger.addHandler(file_handler)
+
+    stream_handler = logging.StreamHandler()
+    stream_handler.setLevel(logging.INFO)
+    stream_handler.setFormatter(formatter)
+    logger.addHandler(stream_handler)
+
+    return logger
