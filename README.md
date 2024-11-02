@@ -58,6 +58,77 @@ Using AlexNet as an example, if you want to use these networks for classificatio
     <img src="./utils/Classification_Combined_Images.png" alt="">
 </figure>
 
+### 1.6 Classification Model Comparison
+<table>
+    <tr>
+        <th style="text-align: center;">Networks & Metrics</th>
+        <th style="text-align: center;">AlexNet</th>
+        <th style="text-align: center;">VGGNet</th>
+        <th style="text-align: center;">GoogLeNet</th>
+        <th style="text-align: center;">ResNeXt</th>
+        <th style="text-align: center;">DenseNet</th>
+        <th style="text-align: center;">Swin Transformer</th>
+    </tr>
+    <tr>
+        <td style="text-align: center;">Accuracy</td>
+        <td style="text-align: center;">0.864</td>
+        <td style="text-align: center;">0.920</td>
+        <td style="text-align: center;">0.905</td>
+        <td style="text-align: center;">0.938</td>
+        <td style="text-align: center;">0.929</td>
+        <td style="text-align: center;">0.884</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">Loss</td>
+        <td style="text-align: center;">0.545</td>
+        <td style="text-align: center;">0.367</td>
+        <td style="text-align: center;">0.417</td>
+        <td style="text-align: center;">0.374</td>
+        <td style="text-align: center;">0.316</td>
+        <td style="text-align: center;">0.456</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">Precision</td>
+        <td style="text-align: center;">0.867</td>
+        <td style="text-align: center;">0.922</td>
+        <td style="text-align: center;">0.910</td>
+        <td style="text-align: center;">0.939</td>
+        <td style="text-align: center;">0.931</td>
+        <td style="text-align: center;">0.886</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">Recall</td>
+        <td style="text-align: center;">0.864</td>
+        <td style="text-align: center;">0.920</td>
+        <td style="text-align: center;">0.905</td>
+        <td style="text-align: center;">0.938</td>
+        <td style="text-align: center;">0.929</td>
+        <td style="text-align: center;">0.884</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">F1 Score</td>
+        <td style="text-align: center;">0.864</td>
+        <td style="text-align: center;">0.920</td>
+        <td style="text-align: center;">0.905</td>
+        <td style="text-align: center;">0.938</td>
+        <td style="text-align: center;">0.929</td>
+        <td style="text-align: center;">0.884</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">AUC</td>
+        <td style="text-align: center;">0.997</td>
+        <td style="text-align: center;">0.998</td>
+        <td style="text-align: center;">0.998</td>
+        <td style="text-align: center;">0.999</td>
+        <td style="text-align: center;">0.998</td>
+        <td style="text-align: center;">0.997</td>
+    </tr>
+</table>
+
+<figure style="display: flex; align-items: center; justify-content: center;">
+    <img src="./utils/Network_Metrics_Comparison.png" alt="">
+</figure>
+
 ## 2. Image Super-Resolution
 
 In this section, this project uses two network architecture implementations, **SRResNet** and **SRGAN**. The former is a traditional convolutional approach and the latter is a generative adversarial network.
