@@ -55,33 +55,7 @@ Using AlexNet as an example, if you want to use these networks for classificatio
 
 ### 1.5 Indicator Charts for Various Models
 <figure style="display: flex; align-items: center; justify-content: center;">
-    <img src="./AlexNet/AlexNet-Indicator-Chart.png" alt="" style="height: 30vw; aspect-ratio: 18 / 10; margin-right: 10px;">
-    <img src="./AlexNet/AlexNet_Confusion_Matrix.png" alt="" style="height: 30vw; aspect-ratio: 10 / 8;">
-</figure>
-
-<figure style="display: flex; align-items: center; justify-content: center;">
-    <img src="./VGGNet/VGGNet-Indicator-Chart.png" alt="" style="height: 30vw; aspect-ratio: 18 / 10; margin-right: 10px;">
-    <img src="./VGGNet/VGG_Confusion_Matrix.png" alt="" style="height: 30vw; aspect-ratio: 10 / 8;">
-</figure>
-
-<figure style="display: flex; align-items: center; justify-content: center;">
-    <img src="./GoogLeNet/GoogLeNet-Indicator-Chart.png" alt="" style="height: 30vw; aspect-ratio: 18 / 10; margin-right: 10px;">
-    <img src="./GoogLeNet/GoogLeNet_Confusion_Matrix.png" alt="" style="height: 30vw; aspect-ratio: 10 / 8;">
-</figure>
-
-<figure style="display: flex; align-items: center; justify-content: center;">
-    <img src="./ResNeXt/ResNeXt-Indicator-Chart.png" alt="" style="height: 30vw; aspect-ratio: 18 / 10; margin-right: 10px;">
-    <img src="./ResNeXt/ResNeXt_Confusion_Matrix.png" alt="" style="height: 30vw; aspect-ratio: 10 / 8;">
-</figure>
-
-<figure style="display: flex; align-items: center; justify-content: center;">
-    <img src="./DenseNet/DenseNet-Indicator-Chart.png" alt="" style="height: 30vw; aspect-ratio: 18 / 10; margin-right: 10px;">
-    <img src="./DenseNet/DenseNet_Confusion_Matrix.png" alt="" style="height: 30vw; aspect-ratio: 10 / 8;">
-</figure>
-
-<figure style="display: flex; align-items: center; justify-content: center;">
-    <img src="./SwinTransformer/SwinTransformer-Indicator-Chart.png" alt="" style="height: 30vw; aspect-ratio: 18 / 10; margin-right: 10px;">
-    <img src="./SwinTransformer/SwinTransformer_Confusion_Matrix.png" alt="" style="height: 30vw; aspect-ratio: 10 / 8;">
+    <img src="./utils/Classification_Combined_Images.png" alt="">
 </figure>
 
 ## 2. Image Super-Resolution
