@@ -160,30 +160,44 @@ Then the json file will be obtained:
 ```
 
 ### 2.5 Comparison of Data on Indicators
+<table>
+    <tr>
+        <th style="text-align: center;"></th>
+        <th style="text-align: center;">SRResNet</th>
+        <th style="text-align: center;">SRGAN</th>
+    </tr>
+    <tr>
+        <td style="text-align: center;">PSNR</td>
+        <td style="text-align: center;">34.524</td>
+        <td style="text-align: center;">30.628</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">SSIM</td>
+        <td style="text-align: center;">0.935</td>
+        <td style="text-align: center;">0.891</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">Time</td>
+        <td style="text-align: center;">0.008</td>
+        <td style="text-align: center;">0.008</td>
+    </tr>
+</table>
 
-<div style="display: flex; justify-content: center; align-items: center; width: 60%; margin: 0 auto;">
-    <table style="border-collapse: collapse; text-align: center; width: 100%">
-        <tr>
-            <th style="border: 1px solid #ddd; padding: 1.5vw; width: 25vw;"></th>
-            <th style="border: 1px solid #ddd; padding: 1.5vw; width: 25vw;">SRResNet</th>
-            <th style="border: 1px solid #ddd; padding: 1.5vw; width: 25vw;">SRGAN</th>
-        </tr>
-        <tr>
-            <td style="border: 1px solid #ddd; padding: 1.5vw; width: 25vw;">PSNR</td>
-            <td style="border: 1px solid #ddd; padding: 1.5vw; width: 25vw;">34.524</td>
-            <td style="border: 1px solid #ddd; padding: 1.5vw; width: 25vw;">30.628</td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid #ddd; padding: 1.5vw; width: 25vw;">SSIM</td>
-            <td style="border: 1px solid #ddd; padding: 1.5vw; width: 25vw;">0.935</td>
-            <td style="border: 1px solid #ddd; padding: 1.5vw; width: 25vw;">0.891</td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid #ddd; padding: 1.5vw; width: 25vw;">Time</td>
-            <td style="border: 1px solid #ddd; padding: 1.5vw; width: 25vw;">0.008</td>
-            <td style="border: 1px solid #ddd; padding: 1.5vw; width: 25vw;">0.008</td>
-        </tr>
-    </table>
-</div>
+For SRResNet, the loss varies as shown in Fig:
+<figure style="display: flex; align-items: center; justify-content: center;">
+    <img src="./SRResNet/SRResNet_Loss_Curve.png" alt="">
+</figure>
+
+For SRGAN, the loss varies as shown in Fig:
+<figure style="display: flex; align-items: center; justify-content: center;">
+    <img src="./SRGAN/SRGAN_Loss_Curve.png" alt="">
+</figure>
+
+Obviously, as can be seen from the above graph of the loss curve of SRGAN, the loss of adversarial neural network is not stable, especially the generative loss and discriminative loss are doing fierce confrontation between each other. We do not directly judge the effect by the loss.
+
+### 2.6 Effective Demonstration
+<figure style="display: flex; align-items: center; justify-content: center;">
+    <img src="./utils/Super_Resolution_Comparison.png" alt="">
+</figure>
 
 ## To be continue...
