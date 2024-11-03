@@ -1,12 +1,6 @@
-<div style="display: flex; justify-content: center; align-items: center;">
-    <img src="logo.svg" alt="Logo" style="width: 7vw; height: 7vw;">
-    <h1>Intelligent-RS</h1>
-</div>
+# Intelligent-RS
 
-<div style="display: flex; justify-content: center; align-items: center;">
-    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="">&nbsp;&nbsp;&nbsp;
-    <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white" alt="">
-</div>
+<img src="./logo.svg" alt="Logo" style="width: 10vw; height: 10vw;">
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)&nbsp;&nbsp;&nbsp;
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
