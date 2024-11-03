@@ -5,9 +5,6 @@
     <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white" alt="">
 </div>
 
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)&nbsp;&nbsp;&nbsp;
-![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
-
 This is the model repository of YNU's deep learning principles and platform course assignments, which mainly use remote sensing image datasets to achieve **classification**, **colorization** and **super-resolution**.
 
 The **NWPU-RESISC45** dataset, which is publicly available from the Northwestern Polytechnical University, is the main dataset used in this project. In this dataset, there are a total of 45 categories of remote sensing images, and each category contains 700 remote sensing images, all of which are 256x256 in size.
