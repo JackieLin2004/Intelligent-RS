@@ -1,6 +1,6 @@
 # Intelligent-RS
 
-<img src="./logo.svg" alt="Logo" style="width: 10vw; height: 10vw;">
+<img src="./logo.svg" alt="Logo" style="width: 15vw; height: 15vw;">
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)&nbsp;&nbsp;&nbsp;
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
