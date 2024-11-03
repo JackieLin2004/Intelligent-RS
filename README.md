@@ -1,20 +1,15 @@
 <div style="display: flex; justify-content: center; align-items: center;">
-    <img src="logo.svg" alt="Logo" style="width: 15vw; height: 15vw; margin: 0;">
-</div>
-
-<div style="display: flex; justify-content: center; align-items: center;">
+    <img src="logo.svg" alt="Logo" style="width: 7vw; height: 7vw;">
     <h1>Intelligent-RS</h1>
 </div>
 
 <div style="display: flex; justify-content: center; align-items: center;">
-    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="">
-    <div>&nbsp;&nbsp;&nbsp;</div>
+    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="">&nbsp;&nbsp;&nbsp;
     <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white" alt="">
 </div>
 
-[//]: # (![Python]&#40;https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white&#41;&nbsp;&nbsp;&nbsp;)
-
-[//]: # (![PyTorch]&#40;https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white&#41;)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)&nbsp;&nbsp;&nbsp;
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
 
 This is the model repository of YNU's deep learning principles and platform course assignments, which mainly use remote sensing image datasets to achieve **classification**, **colorization** and **super-resolution**.
 
