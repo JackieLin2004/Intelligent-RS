@@ -157,10 +157,10 @@ class Discriminator(nn.Module):
         in_channels = 3
         conv_blocks = list()
         for i in range(n_blocks):
-            out_channels = (n_channels if i is 0 else in_channels * 2) if i % 2 is 0 else in_channels
+            out_channels = (n_channels if i == 0 else in_channels * 2) if i % 2 == 0 else in_channels
             conv_blocks.append(
                 ConvolutionalBlock(in_channels=in_channels, out_channels=out_channels, kernel_size=kernel_size,
-                                   stride=1 if i % 2 is 0 else 2, batch_norm=i is not 0, activation='LeakyReLu'))
+                                   stride=1 if i % 2 == 0 else 2, batch_norm=i != 0, activation='LeakyReLu'))
             in_channels = out_channels
         self.conv_blocks = nn.Sequential(*conv_blocks)
 
