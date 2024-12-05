@@ -2,11 +2,9 @@ import os
 
 import torch
 from torch.autograd import Variable
-from torchvision.utils import make_grid, save_image
 from skimage.color import lab2rgb
-from skimage import io
-from model import ColorNet
-from myimgfolder import ValImageFolder
+from model import ColorizationNet
+from img_folder import ValImageFolder
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -18,13 +16,13 @@ val_set = ValImageFolder(data_dir)
 val_set_size = len(val_set)
 val_loader = torch.utils.data.DataLoader(val_set, batch_size=1, shuffle=False, num_workers=1)
 
-color_model = ColorNet()
-color_model.load_state_dict(torch.load('./colornet_params.pkl', map_location=torch.device('cpu')))
+color_model = ColorizationNet()
+color_model.load_state_dict(torch.load('./model_best_params.pkl', map_location=torch.device('cpu')))
 if have_cuda:
     color_model.cuda()
 
 
-def val():
+def predict():
     color_model.eval()
 
     # 创建保存灰度图像和彩色图像的目录
@@ -60,13 +58,7 @@ def val():
             color_name = './colorimg/' + str(i) + '.jpg'
             plt.imsave(color_name, img)
             i += 1
-        # use the follow method can't get the right image but I don't know why
-        # color_img = torch.from_numpy(color_img.transpose((0, 3, 1, 2)))
-        # sprite_img = make_grid(color_img)
-        # color_name = './colorimg/'+str(i)+'.jpg'
-        # save_image(sprite_img, color_name)
-        # i += 1
 
 
 if __name__ == '__main__':
-    val()
+    predict()

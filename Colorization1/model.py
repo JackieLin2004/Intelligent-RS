@@ -63,7 +63,8 @@ class GlobalFeatNet(nn.Module):
         self.bn3 = nn.BatchNorm2d(512)
         self.conv4 = nn.Conv2d(512, 512, kernel_size=3, stride=1, padding=1)
         self.bn4 = nn.BatchNorm2d(512)
-        self.fc1 = nn.Linear(25088, 1024)
+
+        self.fc1 = nn.Linear(32768, 1024)
         self.bn5 = nn.BatchNorm1d(1024)
         self.fc2 = nn.Linear(1024, 512)
         self.bn6 = nn.BatchNorm1d(512)
@@ -75,7 +76,7 @@ class GlobalFeatNet(nn.Module):
         x = F.relu(self.bn2(self.conv2(x)))
         x = F.relu(self.bn3(self.conv3(x)))
         x = F.relu(self.bn4(self.conv4(x)))
-        x = x.view(-1, 25088)
+        x = x.view(x.size(0), -1)
         x = F.relu(self.bn5(self.fc1(x)))
         output_512 = F.relu(self.bn6(self.fc2(x)))
         output_256 = F.relu(self.bn7(self.fc3(output_512)))
@@ -96,9 +97,9 @@ class ClassificationNet(nn.Module):
         return x
 
 
-class ColorizationNet(nn.Module):
+class ColorizationModel(nn.Module):
     def __init__(self):
-        super(ColorizationNet, self).__init__()
+        super(ColorizationModel, self).__init__()
         self.fc1 = nn.Linear(512, 256)
         self.bn1 = nn.BatchNorm1d(256)
         self.conv1 = nn.Conv2d(256, 128, kernel_size=3, stride=1, padding=1)
@@ -133,24 +134,19 @@ class ColorizationNet(nn.Module):
         return x
 
 
-class ColorNet(nn.Module):
+class ColorizationNet(nn.Module):
     def __init__(self):
-        super(ColorNet, self).__init__()
+        super(ColorizationNet, self).__init__()
         self.low_lv_feat_net = LowLevelFeatNet()
         self.mid_lv_feat_net = MidLevelFeatNet()
         self.global_feat_net = GlobalFeatNet()
         self.class_net = ClassificationNet()
-        self.upsample_col_net = ColorizationNet()
+        self.upsample_col_net = ColorizationModel()
 
     def forward(self, x1, x2):
         x1, x2 = self.low_lv_feat_net(x1, x2)
-        #print('after low_lv, mid_input is:{}, global_input is:{}'.format(x1.size(), x2.size()))
         x1 = self.mid_lv_feat_net(x1)
-        #print('after mid_lv, mid2fusion_input is:{}'.format(x1.size()))
         class_input, x2 = self.global_feat_net(x2)
-        #print('after global_lv, class_input is:{}, global2fusion_input is:{}'.format(class_input.size(), x2.size()))
         class_output = self.class_net(class_input)
-        #print('after class_lv, class_output is:{}'.format(class_output.size()))
         output = self.upsample_col_net(x1, x2)
-        #print('after upsample_lv, output is:{}'.format(output.size()))
         return class_output, output

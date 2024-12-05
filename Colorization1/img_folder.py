@@ -2,14 +2,14 @@ from torchvision import datasets, transforms
 from skimage.color import rgb2lab, rgb2gray
 import torch
 import numpy as np
-#import matplotlib.pyplot as plt
 
+img_size = 256
 scale_transform = transforms.Compose([
-    transforms.Resize(256),
-    transforms.RandomCrop(224),
-    #transforms.ToTensor()
+    transforms.Resize(int(img_size * 1.143)),
+    transforms.CenterCrop(img_size),
+    # transforms.ToTensor(),
+    # transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
 ])
-
 
 class TrainImageFolder(datasets.ImageFolder):
     def __getitem__(self, index):
@@ -18,6 +18,9 @@ class TrainImageFolder(datasets.ImageFolder):
         if self.transform is not None:
             img_original = self.transform(img)
             img_original = np.asarray(img_original)
+
+            if img_original.shape[0] == 3:
+                img_original = np.transpose(img_original, (1, 2, 0))
 
             img_lab = rgb2lab(img_original)
             img_lab = (img_lab + 128) / 255
