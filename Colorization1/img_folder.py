@@ -45,6 +45,11 @@ class ValImageFolder(datasets.ImageFolder):
         img_scale = np.asarray(img_scale)
         img_original = np.asarray(img_original)
 
+        if img_scale.shape[0] == 3:
+            img_scale = np.transpose(img_scale, (1, 2, 0))
+        if img_original.shape[0] == 3:
+            img_original = np.transpose(img_original, (1, 2, 0))
+
         img_scale = rgb2gray(img_scale)
         img_scale = torch.from_numpy(img_scale)
         img_original = rgb2gray(img_original)

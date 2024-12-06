@@ -28,8 +28,8 @@ def predict():
     # 创建保存灰度图像和彩色图像的目录
     if not os.path.exists('./gray'):
         os.makedirs('./gray')
-    if not os.path.exists('./colorimg'):
-        os.makedirs('./colorimg')
+    if not os.path.exists('./color'):
+        os.makedirs('./color')
 
     i = 0
     for data, _ in val_loader:
@@ -55,7 +55,7 @@ def predict():
             img[:, :, 1:3] = img[:, :, 1:3] * 255 - 128
             img = img.astype(np.float64)
             img = lab2rgb(img)
-            color_name = './colorimg/' + str(i) + '.jpg'
+            color_name = './color/' + str(i) + '.jpg'
             plt.imsave(color_name, img)
             i += 1
 
