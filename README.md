@@ -13,6 +13,12 @@ The **NWPU-RESISC45** dataset, which is publicly available from the Northwestern
 
 At the same time, the project is divided by network architecture, and the separate network architecture folder is also a relatively complete code for that network, which can be taken down and run directly.
 
+## Get Started
+```bash
+git clone https://github.com/JackieLin2004/Intelligent-RS.git
+cd Intelligent-RS/
+```
+
 ## Requirements
 ```bash
 pip install torch==1.12.0
@@ -24,10 +30,14 @@ pip install scikit-learn==1.2.1
 pip install scikit-image==0.24.0
 ```
 
-## Get Started
+## Environments
+You can install the environment by the following two methods:
 ```bash
-git clone https://github.com/JackieLin2004/Intelligent-RS.git
-cd Intelligent-RS/
+pip install -r requirements.txt
+```
+Or you can execute it if you want my full conda environment:
+```bash
+conda env create -f environment.yaml
 ```
 
 ## 1. Image Classification
