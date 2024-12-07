@@ -1,0 +1,4 @@
+saved_models/discriminator_0.pth
+saved_models/discriminator_best.pth
+saved_models/generator_0.pth
+saved_models/generator_best.pth
