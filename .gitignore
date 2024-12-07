@@ -65,3 +65,6 @@
 
 /Colorization1/Colorization1.log
 /Colorization1/model_best_params.pkl
+
+/Colorization2/Colorization2.log
+/Colorization2/colorization_model.pt
