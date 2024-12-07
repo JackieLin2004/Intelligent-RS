@@ -16,7 +16,7 @@ At the same time, the project is divided by network architecture, and the separa
 ## Get Started
 ```bash
 git clone https://github.com/JackieLin2004/Intelligent-RS.git
-cd Intelligent-RS/
+cd ./Intelligent-RS/
 ```
 
 ## Requirements
@@ -31,13 +31,22 @@ pip install scikit-image==0.24.0
 ```
 
 ## Environments
-You can install the environment by the following two methods:
+You can install the environment by the following method:
 ```bash
 pip install -r requirements.txt
 ```
-Or you can execute it if you want my full conda environment:
+Or you can execute it if you want the full conda environment:
 ```bash
 conda env create -f environment.yaml
+```
+
+## 0. Preparation
+
+Though it is not necessary for the categorization task and the super-resolution reconstruction task.
+
+But it's needed for colorization tasks, and it is recommended to run the code under the following folder first:
+```bash
+/data_prepare/
 ```
 
 ## 1. Image Classification
