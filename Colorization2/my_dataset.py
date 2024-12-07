@@ -6,12 +6,12 @@ from PIL import Image
 import numpy as np
 from skimage.color import rgb2lab
 
-train_path = '../dataset/colorization/train/train_color1'
-test_path = '../dataset/colorization/test/test_color1'
-
-# 获取训练集和测试集的图片路径
-train_images = glob.glob(train_path + '/*.jpg')
-test_images = glob.glob(test_path + '/*.jpg')
+# train_path = '../dataset/colorization/train/train_color1'
+# test_path = '../dataset/colorization/test/test_color1'
+#
+# # 获取训练集和测试集的图片路径
+# train_images = glob.glob(train_path + '/*.jpg')
+# test_images = glob.glob(test_path + '/*.jpg')
 
 
 # 调整图片大小
@@ -34,26 +34,26 @@ def resize_img(img, HW=(256, 256), resample=3):
 
 
 # 初始化列表
-train_imgs = []
-test_imgs = []
+# train_imgs = []
+# test_imgs = []
 
-# 加载并调整训练集图片大小
-for img_path in tqdm(train_images):
-    img = Image.open(img_path)
-    img = np.array(img)
-    resized_img = resize_img(img)
-    train_imgs.append(resized_img)
-
-# 加载并调整测试集图片大小
-for img_path in tqdm(test_images):
-    img = Image.open(img_path)
-    img = np.array(img)
-    resized_img = resize_img(img)
-    test_imgs.append(resized_img)
+# # 加载并调整训练集图片大小
+# for img_path in tqdm(train_images):
+#     img = Image.open(img_path)
+#     img = np.array(img)
+#     resized_img = resize_img(img)
+#     train_imgs.append(resized_img)
+#
+# # 加载并调整测试集图片大小
+# for img_path in tqdm(test_images):
+#     img = Image.open(img_path)
+#     img = np.array(img)
+#     resized_img = resize_img(img)
+#     test_imgs.append(resized_img)
 
 
 class ColorData(Dataset):
-    def __init__(self, train=1):
+    def __init__(self, img_paths, train=1):
         """
         初始化数据集类的构造函数。
 
@@ -63,19 +63,24 @@ class ColorData(Dataset):
         参数:
         - train: int, 指定使用训练集(1)还是测试集(0)的标志。
         """
+        self.images = []
+
+        for img_path in img_paths:
+            img = Image.open(img_path)
+            img = np.array(img)
+            resized_img = resize_img(img)
+            self.images.append(resized_img)
+
         # 根据train参数的值选择数据集和变换方法
         if train == 1:
-            self.images = train_imgs
             self.transforms = transforms.Compose([
                 transforms.RandomHorizontalFlip(),
             ])
         elif train == 0:
-            self.images = test_imgs
+            self.transforms  = None
 
         # 保存train参数的值，以便于后续使用
         self.train = train
-        # 初始化self.images，使其指向选定的数据集
-        self.images = self.images
 
     def __len__(self):
         return len(self.images)

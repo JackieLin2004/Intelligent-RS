@@ -1,4 +1,5 @@
 import os
+import glob
 import logging
 
 import torch
@@ -80,10 +81,17 @@ def train(model, train_loader, epochs):
 
     for epoch in range(epochs):
         loss_meter_dict = create_loss_meters()
-        for data in tqdm(train_loader):
-            model.setup_input(data)
-            model.optimize()
-            all_loss = update_losses(model, loss_meter_dict, all_loss, count=data[0].size(0))
+        with tqdm(train_loader, desc=f"Epoch [{epoch+1}/{epochs}]", dynamic_ncols=True) as pbar:
+            for data in pbar:
+                model.setup_input(data)
+                model.optimize()
+
+                all_loss = update_losses(model, loss_meter_dict, all_loss, count=data[0].size(0))
+
+                pbar.set_postfix(
+                    loss_D=f"{loss_meter_dict['loss_D'].avg:.4f}",
+                    loss_G=f"{loss_meter_dict['loss_G'].avg:.4f}"
+                )
 
         logger.info(f"Epoch {epoch + 1} - "
                     f"loss_D_fake: {loss_meter_dict['loss_D_fake'].avg:.6f}, "
@@ -102,7 +110,10 @@ def train(model, train_loader, epochs):
 
 # 总运行函数
 def run():
-    train_dataset = ColorData(train=1)
+    train_path = '../dataset/colorization/train/train_color1'
+    train_images = glob.glob(train_path + '/*.jpg')
+
+    train_dataset = ColorData(img_paths=train_images, train=1)
     train_loader = DataLoader(train_dataset, batch_size=100, shuffle=True, num_workers=0)
 
     model = Colorization_Model()
