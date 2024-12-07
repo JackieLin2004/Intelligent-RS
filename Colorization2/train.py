@@ -110,15 +110,15 @@ def train(model, train_loader, epochs):
 
 # 总运行函数
 def run():
-    train_path = '../dataset/colorization/train/train_color1'
+    train_path = '../dataset/colorization/train/train_color'
     train_images = glob.glob(train_path + '/*.jpg')
 
     train_dataset = ColorData(img_paths=train_images, train=1)
-    train_loader = DataLoader(train_dataset, batch_size=100, shuffle=True, num_workers=0)
+    train_loader = DataLoader(train_dataset, batch_size=100, shuffle=True, num_workers=16)
 
     model = Colorization_Model()
 
-    train(model, train_loader, epochs=10)
+    train(model, train_loader, epochs=100)
 
 
 if __name__ == '__main__':
