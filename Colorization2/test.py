@@ -7,11 +7,11 @@ import matplotlib.pyplot as plt
 from skimage.color import lab2rgb
 import numpy as np
 
-# 准备模型
+
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = Colorization_Model().to(device)
 
-# 加载模型
+
 model_path = './colorization_model.pt'  # 替换为你的模型路径
 checkpoint = torch.load(model_path)
 model.load_state_dict(checkpoint['model_state_dict'])
@@ -36,7 +36,6 @@ def lab_to_rgb(L, ab):
     return np.stack(rgb_imgs, axis=0)
 
 
-# 只保存生成的彩色图像
 def save_generated_image(model, data):
     model.net_G.eval()
     with torch.no_grad():
@@ -48,13 +47,12 @@ def save_generated_image(model, data):
     fake_imgs = lab_to_rgb(L, fake_color)  # 将模型输出从 Lab 转换为 RGB
 
     # 保存生成的彩色图像
-    generated_image = fake_imgs[0]  # 只取第一张图像（batch size 为 1）
-    save_path = os.path.join('./colorized_image.png')  # 保存路径
+    generated_image = fake_imgs[0]
+    save_path = os.path.join('./colorized_image.png')
     plt.imsave(save_path, generated_image)
     print(f"Image saved at: {save_path}")
 
 
-# 测试过程
 with torch.no_grad():
     for data in test_loader:
         save_generated_image(model, data)

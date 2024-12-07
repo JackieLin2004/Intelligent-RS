@@ -1,17 +1,8 @@
-import glob
-from tqdm import tqdm
 from torch.utils.data import Dataset
 from torchvision import transforms
 from PIL import Image
 import numpy as np
 from skimage.color import rgb2lab
-
-# train_path = '../dataset/colorization/train/train_color1'
-# test_path = '../dataset/colorization/test/test_color1'
-#
-# # 获取训练集和测试集的图片路径
-# train_images = glob.glob(train_path + '/*.jpg')
-# test_images = glob.glob(test_path + '/*.jpg')
 
 
 # 调整图片大小
@@ -31,25 +22,6 @@ def resize_img(img, HW=(256, 256), resample=3):
     # 使用resize方法调整图像大小，其中HW[1]代表宽度，HW[0]代表高度
     # resample参数指定图像重采样方法，这里使用默认值3，对应于双三次插值法
     return np.asarray(Image.fromarray(img).resize((HW[1], HW[0]), resample=resample))
-
-
-# 初始化列表
-# train_imgs = []
-# test_imgs = []
-
-# # 加载并调整训练集图片大小
-# for img_path in tqdm(train_images):
-#     img = Image.open(img_path)
-#     img = np.array(img)
-#     resized_img = resize_img(img)
-#     train_imgs.append(resized_img)
-#
-# # 加载并调整测试集图片大小
-# for img_path in tqdm(test_images):
-#     img = Image.open(img_path)
-#     img = np.array(img)
-#     resized_img = resize_img(img)
-#     test_imgs.append(resized_img)
 
 
 class ColorData(Dataset):
