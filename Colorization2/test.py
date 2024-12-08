@@ -11,13 +11,16 @@ import numpy as np
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = Colorization_Model().to(device)
 
-
-model_path = './colorization_model.pt'  # 替换为你的模型路径
-checkpoint = torch.load(model_path)
+model_path = './colorization_model.pt'
+checkpoint = torch.load(model_path, map_location=torch.device('cpu'))
 model.load_state_dict(checkpoint['model_state_dict'])
 
 test_image_paths = [
-    '../dataset/colorization/test/test_grayscale/airplane_airplane_561.jpg',
+    './gray/airplane_airplane_562.jpg',
+    './gray/airplane_airplane_570.jpg',
+    './gray/airplane_airplane_587.jpg',
+    './gray/basketball_court_basketball_court_563.jpg',
+    './gray/beach_beach_627.jpg',
 ]
 
 test_dataset = ColorData(img_paths=test_image_paths, train=0)
@@ -36,7 +39,7 @@ def lab_to_rgb(L, ab):
     return np.stack(rgb_imgs, axis=0)
 
 
-def save_generated_image(model, data):
+def save_generated_image(model, data, input_image_path):
     model.net_G.eval()
     with torch.no_grad():
         model.setup_input(data)  # 获取输入的灰度图和真实彩色图
@@ -46,13 +49,15 @@ def save_generated_image(model, data):
     L = model.L  # 获取亮度通道
     fake_imgs = lab_to_rgb(L, fake_color)  # 将模型输出从 Lab 转换为 RGB
 
-    # 保存生成的彩色图像
+    input_image_name = os.path.basename(input_image_path)
+    save_name = os.path.splitext(input_image_name)[0] + '_colorized.jpg'
+    save_path = os.path.join('./results', save_name)
+
     generated_image = fake_imgs[0]
-    save_path = os.path.join('./colorized_image.png')
     plt.imsave(save_path, generated_image)
     print(f"Image saved at: {save_path}")
 
 
 with torch.no_grad():
-    for data in test_loader:
-        save_generated_image(model, data)
+    for data, input_image_path in zip(test_loader, test_image_paths):
+        save_generated_image(model, data, input_image_path)
