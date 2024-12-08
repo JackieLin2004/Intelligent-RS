@@ -63,6 +63,7 @@
 /Improved_SRGAN/results/checkpoint_isrgan.pth
 /Improved_SRGAN/ISRGAN.log
 
+/Colorization1/.ipynb_checkpoints
 /Colorization1/Colorization1.log
 /Colorization1/model_best_params.pkl
 
