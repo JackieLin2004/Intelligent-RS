@@ -359,4 +359,10 @@ For Colorization2, the loss varies as shown in Fig:
     <img src="./Colorization2/Colorization2_Loss_Curve.png" alt="">
 </figure>
 
+### 3.6 Effective Demonstration
+
+<figure style="display: flex; align-items: center; justify-content: center;">
+    <img src="./utils/Colorization_Comparison.png" alt="">
+</figure>
+
 ## To be continue...

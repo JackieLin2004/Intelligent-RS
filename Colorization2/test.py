@@ -16,9 +16,11 @@ checkpoint = torch.load(model_path, map_location=torch.device('cpu'))
 model.load_state_dict(checkpoint['model_state_dict'])
 
 test_image_paths = [
+    './gray/airplane_airplane_561.jpg',
     './gray/airplane_airplane_562.jpg',
     './gray/airplane_airplane_570.jpg',
     './gray/airplane_airplane_587.jpg',
+    './gray/baseball_diamond_baseball_diamond_573.jpg',
     './gray/basketball_court_basketball_court_563.jpg',
     './gray/beach_beach_627.jpg',
 ]
