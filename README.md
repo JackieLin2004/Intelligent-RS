@@ -154,7 +154,11 @@ Using AlexNet as an example, if you want to use these networks for classificatio
 
 ## 2. Image Super-Resolution
 
-In this section, this project uses two network architecture implementations, **SRResNet** and **SRGAN**. The former is a traditional convolutional approach and the latter is a generative adversarial network.
+In this section, two network architecture implementations are used in this project. The former is a traditional convolutional approach and the latter is a generative adversarial network.
+
+For convolutional methods, we used SRResNet.
+
+And for generative adversarial networks, we used SRGAN, ESRGAN. in addition, we made a little improvement to SRGAN, which is tentatively called ISRGAN here.
 
 ### 2.1 Create Data List
 
@@ -188,21 +192,25 @@ Then the json file will be obtained:
         <th style="text-align: center;"></th>
         <th style="text-align: center;">SRResNet</th>
         <th style="text-align: center;">SRGAN</th>
+        <th style="text-align: center;">ISRGAN</th>
     </tr>
     <tr>
         <td style="text-align: center;">PSNR</td>
         <td style="text-align: center;">34.524</td>
         <td style="text-align: center;">30.628</td>
+        <td style="text-align: center;">30.169</td>
     </tr>
     <tr>
         <td style="text-align: center;">SSIM</td>
         <td style="text-align: center;">0.935</td>
         <td style="text-align: center;">0.891</td>
+        <td style="text-align: center;">0.863</td>
     </tr>
     <tr>
         <td style="text-align: center;">Time</td>
         <td style="text-align: center;">0.008</td>
         <td style="text-align: center;">0.008</td>
+        <td style="text-align: center;">0.011</td>
     </tr>
 </table>
 
@@ -216,11 +224,20 @@ For SRGAN, the loss varies as shown in Fig:
     <img src="./SRGAN/SRGAN_Loss_Curve.png" alt="">
 </figure>
 
-Obviously, as can be seen from the above graph of the loss curve of SRGAN, the loss of adversarial neural network is not stable, especially the generative loss and discriminative loss are doing fierce confrontation between each other. We do not directly judge the effect by the loss.
+For ISRGAN, the loss varies as shown in Fig:
+<figure style="display: flex; align-items: center; justify-content: center;">
+    <img src="./Improved_SRGAN/ISRGAN_Loss_Curve.png" alt="">
+</figure>
+
+Obviously, as can be seen from the above graph of the loss curve of GAN, the loss of adversarial neural network is not stable, especially the generative loss and discriminative loss are doing fierce confrontation between each other. We do not directly judge the effect by the loss.
 
 ### 2.6 Effective Demonstration
 <figure style="display: flex; align-items: center; justify-content: center;">
     <img src="./utils/Super_Resolution_Comparison.png" alt="">
 </figure>
+
+For ISRGAN, we replaced its original ordinary convolution module with a residual module, which is visually better than the original one, although there is no improvement in the metrics.
+
+However, as can be seen from the loss plot, the overall trend of ISRGAN is smoother and better.
 
 ## To be continue...
