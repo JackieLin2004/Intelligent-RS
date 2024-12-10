@@ -1,5 +1,5 @@
-data/airplane 用于训练
-data/airplane_val 用于验证、测试
+data/resized 用于训练
+data/resized_val 用于验证、测试
 images/outputs 保存验证图片
 images/training 训练中捕捉到的低、高分辨率图片组合
 save_models 用于保存模型

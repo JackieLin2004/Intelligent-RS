@@ -53,8 +53,6 @@ def calculate_psnr(img1, img2, data_range=255.0):
 
     # 计算 PSNR
     return psnr(img1, img2, data_range=data_range)
-
-# 计算SSIM
 def calculate_ssim(img1, img2):
     """
     计算 SSIM 指标
@@ -64,21 +62,41 @@ def calculate_ssim(img1, img2):
     # 确保图像在 [0, 255] 范围内
     img1 = img1.detach().cpu().numpy()  # 将 tensor 转换为 NumPy 数组
     img2 = img2.detach().cpu().numpy()
-    
+
     # 对于浮动类型的图像，我们需要乘以 255.0 进行归一化
     if img1.max() <= 1.0:
         img1 = img1 * 255.0
         img2 = img2 * 255.0
     
-    # 确保图像的尺寸至少为 7x7，或根据图像大小调整窗口
+    # 确保图像的尺寸至少为 7x7，或者根据图像大小调整窗口
     min_side = min(img1.shape[1], img1.shape[2])
-    win_size = min(7, min_side)  # 确保 win_size 小于等于图像的最小边长
+
+    # 设置适当的 win_size
+    # 如果图像尺寸太小，将 win_size 调整为图像的最小边长，并确保它是奇数
+    win_size = min(7, min_side)  # win_size 不超过图像最小边长
     if win_size % 2 == 0:
         win_size -= 1  # 保证 win_size 是奇数
 
+    # 如果图像尺寸小于 7x7，直接设置为图像的最小边长
+    if min_side < 7:
+        win_size = min_side if min_side % 2 == 1 else min_side - 1
+
+    # 如果图像尺寸更小（例如 1x1 或 2x2），直接跳过 SSIM 计算，返回默认值
+    if min_side <= 1:
+        return 1.0
+
     # 计算 SSIM 时明确指定 data_range
     data_range = 255  # 假设像素值范围是 [0, 255]
-    return ssim(img1, img2, multichannel=True, win_size=win_size, data_range=data_range)
+
+    # 调用 SSIM 函数
+    try:
+        return ssim(img1, img2, multichannel=True, win_size=win_size, data_range=data_range)
+    except ValueError as e:
+        print(f"SSIM error: {e}")
+        return 0.0  # 在 SSIM 计算失败时返回一个默认值
+
+
+
 
 if __name__ == '__main__':
     # 省略部分代码
@@ -90,8 +108,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("--epoch", type=int, default=0, help="epoch to start training from")
     parser.add_argument("--n_epochs", type=int, default=200, help="number of epochs of training")
-    parser.add_argument("--dataset_name", type=str, default="airplane", help="name of the dataset")
-    parser.add_argument("--batch_size", type=int, default=4, help="size of the batches")
+    parser.add_argument("--dataset_name", type=str, default="resized", help="name of the dataset")
+    parser.add_argument("--batch_size", type=int, default=2, help="size of the batches")
     parser.add_argument("--lr", type=float, default=0.0002, help="adam: learning rate")
     parser.add_argument("--b1", type=float, default=0.9, help="adam: decay of first order momentum of gradient")
     parser.add_argument("--b2", type=float, default=0.999, help="adam: decay of first order momentum of gradient")
@@ -151,7 +169,7 @@ if __name__ == '__main__':
         num_workers=opt.n_cpu,
     )
 
-    best_val_loss = float('inf')  # 初始的最优验证损失为无穷大
+    best_val_loss = -float('inf')  # 初始的最优验证损失为负无穷，避免第一次就保存
     for epoch in range(opt.epoch, opt.n_epochs):
         epoch_loss_D = 0.0
         epoch_loss_G = 0.0
@@ -179,6 +197,8 @@ if __name__ == '__main__':
 
             # 生成高分辨率图像
             gen_hr = generator(imgs_lr)
+            gen_hr = torch.nn.functional.interpolate(gen_hr, size=imgs_hr.shape[2:], mode='bilinear',
+                                                     align_corners=False)
 
             # 计算像素级损失
             loss_pixel = criterion_pixel(gen_hr, imgs_hr)
@@ -241,14 +261,19 @@ if __name__ == '__main__':
             epoch_psnr += batch_psnr
             epoch_ssim += batch_ssim
 
-            logger.info(f"[Epoch {epoch}/{opt.n_epochs}] [Batch {i}/{len(dataloader)}] "
-                         f"[D loss: {loss_D.item()}] [G loss: {loss_G.item()}] "
-                         f"[content: {loss_content.item()}] [adv: {loss_GAN.item()}] [pixel: {loss_pixel.item()}] "
-                         f"[PSNR: {batch_psnr:.2f}] [SSIM: {batch_ssim:.4f}]")
+            # logger.info(f"[Epoch {epoch}/{opt.n_epochs}] [Batch {i}/{len(dataloader)}] "
+            #              f"[D loss: {loss_D.item()}] [G loss: {loss_G.item()}] "
+            #              f"[content: {loss_content.item()}] [adv: {loss_GAN.item()}] [pixel: {loss_pixel.item()}] "
+            #              f"[PSNR: {batch_psnr:.2f}] [SSIM: {batch_ssim:.4f}]")
 
             if batches_done % opt.sample_interval == 0:
                 imgs_lr_resized = nn.functional.interpolate(imgs_lr, scale_factor=4)
-                img_grid = denormalize(torch.cat((imgs_lr_resized, gen_hr), -1))
+                # 假设 gen_hr 的目标尺寸是 imgs_hr 的尺寸
+                gen_hr_resized = nn.functional.interpolate(gen_hr, size=imgs_lr_resized.shape[2:], mode='bilinear', align_corners=False)
+
+# 然后再进行拼接
+                img_grid = denormalize(torch.cat((imgs_lr_resized, gen_hr_resized), -1))
+
                 save_image(img_grid, f"images/training/{batches_done}.png", nrow=1, normalize=False)
 
         # 计算每个epoch的平均损失和指标
