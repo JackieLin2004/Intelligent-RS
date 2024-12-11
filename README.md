@@ -92,7 +92,7 @@ place the appropriate dataset:
 ### 1.3 Classification Projections
 
 ```bash
-/AlexNet/predict.py
+/AlexNet/predictAll.py
 ```
 
 ### 1.4 Charting Indicators
@@ -262,7 +262,7 @@ For SRGAN, the loss varies as shown in Fig:
 
 For ISRGAN, the loss varies as shown in Fig:
 <figure style="display: flex; align-items: center; justify-content: center;">
-    <img src="./Improved_SRGAN/ISRGAN_Loss_Curve.png" alt="">
+    <img src="IPV_SRGAN/ISRGAN_Loss_Curve.png" alt="">
 </figure>
 
 Obviously, as can be seen from the above graph of the loss curve of GAN, the loss of adversarial neural network is not

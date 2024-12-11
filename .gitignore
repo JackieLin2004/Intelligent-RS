@@ -57,11 +57,11 @@
 /SRGAN/results/checkpoint_srgan.pth
 /SRGAN/SRGAN.log
 
-/Improved_SRGAN/.ipynb_checkpoints
-/Improved_SRGAN/data/train_images.json
-/Improved_SRGAN/data/test_images.json
-/Improved_SRGAN/results/checkpoint_isrgan.pth
-/Improved_SRGAN/ISRGAN.log
+/IPV_SRGAN/.ipynb_checkpoints
+/IPV_SRGAN/data/train_images.json
+/IPV_SRGAN/data/test_images.json
+/IPV_SRGAN/results/checkpoint_isrgan.pth
+/IPV_SRGAN/ISRGAN.log
 
 /Colorization1/.ipynb_checkpoints
 /Colorization1/Colorization1.log
