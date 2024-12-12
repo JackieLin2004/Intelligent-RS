@@ -6,7 +6,7 @@ from PIL import Image
 # 测试图像
 imgPath = './results/test.jpg'
 
-# 模型参数
+模型参数
 large_kernel_size = 9  # 第一层卷积和最后一层卷积的核大小
 small_kernel_size = 3  # 中间层卷积的核大小
 n_channels = 64  # 中间层通道数
