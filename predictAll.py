@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 from torch.autograd import Variable
 from torchvision.utils import save_image
 
-from GoogleNet.googlenet_model import GoogleNet
+from GoogLeNet.googlenet_model import GoogleNet
 from ResNeXt.resnext_model import resnext101_32x8d as ResNeXt101
 from AlexNet.alexnet_model import AlexNet
 from DenseNet.densenet_model import densenet201
@@ -65,7 +65,7 @@ def predict_net(image_path, model_name):
 
     # Load class indices
     model_dir = os.path.join('./', model_name)
-    json_path = os.path.join('class_indices.json')
+    json_path = os.path.join('./class_indices.json')
     assert os.path.exists(json_path), f"File: '{json_path}' does not exist."
     with open(json_path, "r") as f:
         class_indict = json.load(f)
@@ -147,7 +147,7 @@ def predict_chaofen(image_path, model_name):
         n_blocks = 16  # 残差模块数量
         scaling_factor = 2  # 放大比例
 
-        checkpoint_path = f"./{model_name}/checkpoint_{model_name}.pth"
+        checkpoint_path = f"./{model_name}/results/checkpoint_{model_name}.pth"
         # 加载模型SRGAN
         checkpoint = torch.load(checkpoint_path, map_location=torch.device('cpu'))
         model_class = MODEL_CHAOFEN[model_name]
@@ -322,4 +322,3 @@ def predict_color(image_path, model_name):
 
 
     return result_path
-

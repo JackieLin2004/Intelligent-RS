@@ -1,8 +1,9 @@
 from flask import Flask, request, jsonify, Response
 from flask_cors import CORS
 import os
-from ShenDu.predict import predict_net,predict_chaofen,predict_color
+from predictAll import predict_net,predict_chaofen,predict_color
 from werkzeug.utils import secure_filename, send_from_directory
+
 
 app = Flask(__name__)
 # CORS(app)  # 允许跨域请求
