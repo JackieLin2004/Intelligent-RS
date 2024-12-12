@@ -16,7 +16,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 if __name__ == '__main__':
     # 预训练模型
-    srgan_checkpoint = "./results/checkpoint_srgan.pth"
+    srgan_checkpoint = "./results/checkpoint_SRGAN.pth"
 
     # 加载模型SRGAN
     checkpoint = torch.load(srgan_checkpoint, map_location=torch.device('cpu'))

@@ -111,7 +111,7 @@ def main():
             'epoch': epoch,
             'model': model.state_dict(),
             'optimizer': optimizer.state_dict()
-        }, 'results/checkpoint_srresnet.pth')
+        }, 'results/checkpoint_SRResNet.pth')
 
 
 if __name__ == '__main__':

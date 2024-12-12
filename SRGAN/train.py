@@ -16,7 +16,7 @@ large_kernel_size_g = 9  # 第一层卷积和最后一层卷积的核大小
 small_kernel_size_g = 3  # 中间层卷积的核大小
 n_channels_g = 64  # 中间层通道数
 n_blocks_g = 16  # 残差模块数量
-srresnet_checkpoint = "../SRResNet/results/checkpoint_srresnet.pth"  # 预训练的SRResNet模型，用来初始化
+srresnet_checkpoint = "../SRResNet/results/checkpoint_SRResNet.pth"  # 预训练的SRResNet模型，用来初始化
 
 # 判别器模型参数
 kernel_size_d = 3  # 所有卷积模块的核大小
@@ -203,7 +203,7 @@ def main():
             'discriminator': discriminator.state_dict(),
             'optimizer_g': optimizer_g.state_dict(),
             'optimizer_g': optimizer_g.state_dict(),
-        }, 'results/checkpoint_srgan.pth')
+        }, 'results/checkpoint_SRGAN.pth')
 
 
 if __name__ == '__main__':

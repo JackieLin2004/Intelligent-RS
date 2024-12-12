@@ -1,9 +1,4 @@
-import os
-import json
-
 import numpy as np
-import torch
-from PIL import Image
 from torchvision import transforms
 import matplotlib.pyplot as plt
 from torch.autograd import Variable
@@ -26,6 +21,8 @@ from Colorization1.model import ColorizationNet
 from Colorization2.model import Colorization_Model
 from ESRGAN.models import GeneratorRRDB
 from ESRGAN.datasets import denormalize,mean,std
+
+
 # 模型名称到模型类的映射
 MODEL_FENLEI = {
     'GoogleNet': GoogleNet,

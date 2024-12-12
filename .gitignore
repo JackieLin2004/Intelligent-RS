@@ -45,7 +45,7 @@
 /SRResNet/.ipynb_checkpoints
 /SRResNet/data/train_images.json
 /SRResNet/data/test_images.json
-/SRResNet/results/checkpoint_srresnet.pth
+/SRResNet/results/checkpoint_SRResNet.pth
 /SRResNet/results/checkpoint_srresnet_16.pth
 /SRResNet/results/checkpoint_srresnet_32.pth
 /SRResNet/SRResNet.log
@@ -54,13 +54,13 @@
 /SRGAN/.ipynb_checkpoints
 /SRGAN/data/train_images.json
 /SRGAN/data/test_images.json
-/SRGAN/results/checkpoint_srgan.pth
+/SRGAN/results/checkpoint_SRGAN.pth
 /SRGAN/SRGAN.log
 
 /IPV_SRGAN/.ipynb_checkpoints
 /IPV_SRGAN/data/train_images.json
 /IPV_SRGAN/data/test_images.json
-/IPV_SRGAN/results/checkpoint_isrgan.pth
+/IPV_SRGAN/results/checkpoint_IPV_SRGAN.pth
 /IPV_SRGAN/ISRGAN.log
 
 /Colorization1/.ipynb_checkpoints
@@ -97,3 +97,5 @@
 /results/SRResNet/
 /results/SwinTransformer/
 /results/VGGNet/
+
+/ESRGAN/generator_best.pth
