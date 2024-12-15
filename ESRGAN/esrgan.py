@@ -156,14 +156,14 @@ if __name__ == '__main__':
     Tensor = torch.cuda.FloatTensor if torch.cuda.is_available() else torch.Tensor
 
     dataloader = DataLoader(
-        ImageDataset("../../data/%s" % opt.dataset_name, hr_shape=hr_shape),
+        ImageDataset("./data/%s" % opt.dataset_name, hr_shape=hr_shape),
         batch_size=opt.batch_size,
         shuffle=True,
         num_workers=opt.n_cpu,
     )
 
     val_dataloader = DataLoader(
-        ImageDataset("../../data/%s_val" % opt.dataset_name, hr_shape=hr_shape),  # 假设你有一个单独的验证集
+        ImageDataset("./data/%s_val" % opt.dataset_name, hr_shape=hr_shape),  # 假设你有一个单独的验证集
         batch_size=opt.batch_size,
         shuffle=False,
         num_workers=opt.n_cpu,

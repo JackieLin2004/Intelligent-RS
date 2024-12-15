@@ -8,7 +8,7 @@ from torchvision.utils import save_image
 from PIL import Image
 
 # 设置固定的图像路径和模型路径
-image_path = "./data/resized_val/airplane88.tif"  # 输入图片路径
+image_path = "./data/resized_val/56d9d4647d57c8d6f12187989b7910e.jpg"  # 输入图片路径
 checkpoint_model = "./saved_models/generator_best.pth"  # 模型路径
 
 # 创建输出文件夹
