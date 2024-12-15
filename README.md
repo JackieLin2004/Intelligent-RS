@@ -19,7 +19,7 @@ relatively complete code for that network, which can be taken down and run direc
 
 ## Other related code repositories
 
-Front-end Code Repository: [Intelligent-RS_frontend](https://github.com/JackieLin2004/Intelligent-RS_frontend)
+Frontend Code Repository: [Intelligent-RS_frontend](https://github.com/JackieLin2004/Intelligent-RS_frontend)
 
 Backend Code Repository: [Intelligent-RS_backend](https://github.com/JackieLin2004/Intelligent-RS_backend)
 
