@@ -17,6 +17,12 @@ category contains 700 remote sensing images, all of which are 256x256 in size.
 At the same time, the project is divided by network architecture, and the separate network architecture folder is also a
 relatively complete code for that network, which can be taken down and run directly.
 
+## Other related code repositories
+
+Front-end code repository: [Intelligent-RS_frontend](https://github.com/JackieLin2004/Intelligent-RS_frontend)
+
+Backend Code Repository: [Intelligent-RS_backend](https://github.com/JackieLin2004/Intelligent-RS_backend)
+
 ## Get Started
 
 ```bash
@@ -376,4 +382,6 @@ For Colorization2, the loss varies as shown in Fig:
     <img src="./utils/Colorization_Comparison.png" alt="">
 </figure>
 
-## To be continue...
+Comparing the colorized models of the two architectures, it can be seen that the CNN architecture performs better for green information, while the GAN architecture is more realistic for the overall performance.
+
+### If you are interested in this project, feel free to fork and star!
