@@ -229,24 +229,28 @@ Then the json file will be obtained:
         <th style="text-align: center;">SRResNet</th>
         <th style="text-align: center;">SRGAN</th>
         <th style="text-align: center;">ISRGAN</th>
+        <th style="text-align: center;">ESRGAN</th>
     </tr>
     <tr>
         <td style="text-align: center;">PSNR</td>
         <td style="text-align: center;">34.524</td>
         <td style="text-align: center;">30.628</td>
         <td style="text-align: center;">30.169</td>
+        <td style="text-align: center;">30.629</td>
     </tr>
     <tr>
         <td style="text-align: center;">SSIM</td>
         <td style="text-align: center;">0.935</td>
         <td style="text-align: center;">0.891</td>
         <td style="text-align: center;">0.863</td>
+        <td style="text-align: center;">0.907</td>
     </tr>
     <tr>
         <td style="text-align: center;">Time</td>
         <td style="text-align: center;">0.008</td>
         <td style="text-align: center;">0.008</td>
         <td style="text-align: center;">0.011</td>
+        <td style="text-align: center;">0.015</td>
     </tr>
 </table>
 
@@ -282,6 +286,8 @@ not directly judge the effect by the loss.
 
 For ISRGAN, we replaced its original ordinary convolution module with a residual module, which is visually better than
 the original one, although there is no improvement in the metrics.
+
+For ESRGAN, although the super-segmentation is good and clear, it loses a lot of details of the remote sensing image.
 
 However, as can be seen from the loss plot, the overall trend of ISRGAN is smoother and better.
 
